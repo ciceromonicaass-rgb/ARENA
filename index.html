@@ -1,5 +1,266 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Arena da Reposição — Professores de Informática</title></head>
-<body><h1>Arena da Reposição — Professores de Informática</h1></body>
-</html>
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Arena da Reposição — Professores de Informática</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#f5f8fc;color:#172033}.app{display:flex;min-height:100vh}.side{width:270px;position:fixed;inset:0 auto 0 0;background:linear-gradient(180deg,#173b8f,#2458b8,#4c2a96);color:white;padding:20px 15px}.brand{font-size:23px;font-weight:900}.sub{font-size:13px;color:#dbeafe;margin:7px 0 18px}.clock{background:#ffffff22;border:1px solid #ffffff33;border-radius:14px;text-align:center;padding:12px;margin-bottom:15px}.clock strong{display:block;font-size:28px}.nav button{width:100%;margin:5px 0;padding:12px;border:0;border-radius:11px;text-align:left;background:#ffffff20;color:white;font-weight:bold;cursor:pointer}.nav .active,.nav button:hover{background:white;color:#173b8f}.main{margin-left:270px;width:calc(100% - 270px);padding:26px}.screen{display:none;max-width:1150px;margin:auto}.screen.active{display:block}.box{background:white;border-radius:24px;padding:30px;box-shadow:0 10px 35px #1e3a8a15;border-top:6px solid #38bdf8}.badge{display:inline-block;background:#e0f2fe;color:#075985;border:1px solid #7dd3fc;border-radius:99px;padding:7px 12px;font-size:13px;font-weight:bold}h1{font-size:40px;margin:12px 0}.lead{font-size:19px;color:#475569;line-height:1.5}.cards,.board,.podium{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:15px;margin:18px 0}.card,.team,.place{background:white;border-radius:17px;padding:19px;box-shadow:0 5px 20px #1e3a8a10}.card{border-left:5px solid #f59e0b}label{display:block;font-weight:bold;margin:10px 0 5px}input,select{width:100%;padding:13px;border:2px solid #d8e1ed;border-radius:11px;background:white}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}.btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}button{border:0;border-radius:12px;padding:12px 18px;font-weight:bold;cursor:pointer}.primary{background:linear-gradient(135deg,#2563eb,#7c3aed);color:white}.green{background:linear-gradient(135deg,#16a34a,#14b8a6);color:white}.orange{background:linear-gradient(135deg,#f59e0b,#ea580c);color:white}.secondary{background:#e8eef8;color:#172033}.question{font-size:30px;font-weight:800;line-height:1.3;margin:25px 0}.options{display:grid;grid-template-columns:1fr 1fr;gap:13px}.options button{background:#f1f5f9;border:2px solid #dbe5f1;text-align:left;min-height:65px;font-size:18px}.options button:hover{background:#e0f2fe;border-color:#38bdf8}.timerbox{text-align:center;background:#f8fafc;border:2px solid #dbe5f1;border-radius:18px;padding:16px}.timer{font-size:60px;font-weight:900;color:#2563eb}.warning{color:#ea580c}.zero{color:#dc2626}.feedback{padding:15px;border-radius:13px;margin:15px 0;font-weight:bold}.ok{background:#dcfce7;color:#166534}.no{background:#fee2e2;color:#991b1b}.score{font-size:42px;font-weight:900;color:#2563eb;text-align:center}.place{text-align:center}.p1{border-top:7px solid #f59e0b}.p2{border-top:7px solid #94a3b8}.p3{border-top:7px solid #b45309}.small{font-size:13px;color:#64748b}
+.turn{background:linear-gradient(135deg,#eff6ff,#f5f3ff);border:3px solid #60a5fa;border-radius:20px;padding:18px;text-align:center;margin-bottom:20px}
+.turn #turnName{font-size:34px;font-weight:900;color:#1d4ed8;margin:8px 0}
+.turn.current{animation:pulseTurn 1.2s infinite alternate}
+@keyframes pulseTurn{from{box-shadow:0 0 0 #60a5fa00}to{box-shadow:0 0 22px #60a5fa55}}
+.turn-item{padding:8px 10px;border-radius:9px;margin:5px 0;background:#f1f5f9}
+.turn-item.active{background:#dbeafe;color:#1d4ed8;font-weight:900}@media(max-width:850px){.app{display:block}.side{position:relative;width:100%}.main{margin-left:0;width:100%;padding:14px}.grid2,.options{grid-template-columns:1fr}h1{font-size:32px}.question{font-size:24px}}
+</style></head><body><div class="app"><aside class="side"><div class="brand">🏆 ARENA DA REPOSIÇÃO</div><div class="sub">Professores de Informática • Curso Técnico em Informática</div><div class="clock"><small>HORÁRIO</small><strong id="clock">00:00:00</strong><small>Quiz presencial • Projetor</small></div><div class="nav"><button class="active" data-s="config">⚙️ Configuração</button><button data-s="arena">🎯 Arena</button><button data-s="placar">📊 Placar</button><button data-s="resultado">🏆 Resultado</button></div></aside>
+<main class="main">
+<section id="config" class="screen active"><div class="box"><span class="badge">REPOSIÇÃO DE AULAS • BIMESTRES ANTERIORES</span><h1>🏆 Arena da Reposição</h1><p class="lead">Quiz interdisciplinar para disputas entre turmas do Curso Técnico em Informática, pensado para uso no auditório com projetor.</p><div class="cards"><div class="card"><h3>💻 Conteúdo amplo</h3><p>Introdução à informática até nível médio técnico integrado.</p></div><div class="card"><h3>⏱️ Cronômetro</h3><p>O tempo termina e para sozinho. O professor decide quando avançar.</p></div><div class="card"><h3>🏫 Turmas</h3><p>Escolha de 2 a 8 turmas/equipes.</p></div><div class="card"><h3>🎯 Pontuação</h3><p>Acertos valem pontos e o professor confirma qual turma pontuou.</p></div></div><div class="grid2"><div><label>Quantidade de participantes/turmas</label><select id="n"><option>2</option><option>3</option><option selected>4</option><option>5</option><option>6</option><option>7</option><option>8</option></select></div><div><label>Tempo por pergunta</label><select id="limit"><option>15</option><option>20</option><option selected>30</option><option>45</option><option>60</option></select></div></div><div id="names" class="cards"></div><div class="btns"><button class="primary" onclick="start()">🚀 Iniciar disputa</button></div></div></section>
+<section id="arena" class="screen"><div class="box">
+<div class="turn" id="turnBox">
+  <span class="badge">VEZ DA TURMA</span>
+  <div id="turnName">Turma</div>
+  <div class="small">A pergunta abaixo é respondida por esta turma.</div>
+</div>
+<div class="grid2">
+<div>
+  <span class="badge" id="area">INFORMÁTICA</span>
+  <span class="badge" id="num">Pergunta 1</span>
+  <div class="question" id="q"></div>
+  <div class="small">O professor deve clicar na alternativa que a turma respondeu.</div>
+  <div class="options" id="opts"></div>
+  <div id="fb"></div>
+</div>
+<div>
+  <div class="timerbox">
+    <div class="small">TEMPO PARA RESPONDER</div>
+    <div class="timer" id="timer">30</div>
+    <div class="small" id="status">Aguardando o professor iniciar</div>
+  </div>
+  <div class="btns">
+    <button class="green" id="startBtn" onclick="startTimer()">▶️ Iniciar tempo</button>
+    <button class="orange" onclick="stopTimer()">⏸️ Encerrar resposta</button>
+    <button class="secondary" onclick="next()">➡️ Próxima pergunta / próxima turma</button>
+  </div>
+  <div class="card" style="margin-top:18px">
+    <h3>📌 Sequência da disputa</h3>
+    <div id="turnOrder"></div>
+  </div>
+</div>
+</div></div></section>
+<section id="placar" class="screen"><div class="box"><span class="badge">PLACAR AO VIVO</span><h1>📊 Placar das Turmas</h1><div id="board" class="board"></div><div class="btns"><button class="primary" onclick="show('arena')">🎯 Arena</button><button class="secondary" onclick="next()">➡️ Liberar próxima pergunta</button></div></div></section>
+<section id="resultado" class="screen"><div class="box"><span class="badge">ENCERRAMENTO</span><h1>🏆 Resultado</h1><div class="podium" id="podium"></div><div class="btns"><button class="secondary" onclick="location.reload()">🔄 Nova disputa</button></div></div></section>
+</main></div>
+<script>
+const qs=[
+["Introdução à Informática","Qual componente realiza o processamento das instruções?","CPU","Monitor","Teclado","Impressora"],
+["Introdução à Informática","Qual dispositivo armazena arquivos de forma permanente?","HD/SSD","Mouse","Monitor","Microfone"],
+["Introdução à Informática","Qual destes é um sistema operacional?","Windows","Chrome","YouTube","Excel"],
+["Hardware","Qual componente fornece energia aos componentes internos?","Fonte de alimentação","Cooler","RAM","Placa de vídeo"],
+["Hardware","Qual equipamento transforma a imagem do computador em projeção?","Projetor","Roteador","Scanner","Teclado"],
+["Redes","Qual equipamento distribui conexão de rede?","Roteador","Monitor","Mouse","Scanner"],
+["Redes","Qual protocolo permite acessar páginas Web com segurança?","HTTPS","FTP","MP3","HDMI"],
+["Segurança Digital","O que é phishing?","Tentativa de enganar para obter informações","Um monitor","Um processador","Uma impressora"],
+["Segurança Digital","Qual prática protege melhor uma conta?","Autenticação em dois fatores","Compartilhar senha","Repetir a senha em tudo","Desativar atualizações"],
+["Sistemas Operacionais","Qual é uma função do sistema operacional?","Gerenciar recursos do computador","Fabricar processadores","Aumentar fisicamente a RAM","Criar energia"],
+["Sistemas Operacionais","Qual atalho normalmente copia conteúdo?","Ctrl + C","Ctrl + V","Ctrl + X","Ctrl + Z"],
+["Negócios em Informática","Antes de criar uma solução, é importante entender...","o problema e a necessidade do cliente","somente a cor","o tamanho do laboratório","o preço do teclado"],
+["Negócios em Informática","Público-alvo é...","grupo de pessoas para quem a solução é destinada","um sistema operacional","um cabo","um processador"],
+["Programação","O que é um algoritmo?","Sequência de passos para resolver um problema","Um monitor","Uma rede","Uma imagem"],
+["Programação","Uma estrutura condicional serve para...","tomar decisões","imprimir papel","aumentar RAM","ligar monitor"],
+["Programação","Qual estrutura representa repetição?","Laço de repetição","Monitor","Arquivo PDF","Teclado"],
+["Linguagem de Programação","Uma variável pode...","armazenar um valor durante a execução","resfriar o processador","conectar Wi-Fi","projetar imagens"],
+["Linguagem de Programação","Em muitas linguagens, == é usado para...","comparar valores","atribuir imagem","iniciar PC","imprimir"],
+["Linguagem de Programação","Qual tipo representa verdadeiro ou falso?","Booleano","Imagem","Áudio","Vídeo"],
+["Projetos e Modelagem","Qual finalidade da modelagem de sistemas?","Representar e compreender uma solução","Aumentar internet","Formatar monitor","Trocar teclado"],
+["Projetos e Modelagem","Um requisito representa...","uma necessidade ou condição do sistema","uma peça física","uma senha","um efeito"],
+["Projetos e Modelagem","Para que serve um protótipo?","Experimentar e visualizar uma solução","Substituir todos os testes","Aumentar HD","Configurar teclado"],
+["Banco de Dados","Qual é a finalidade de um banco de dados?","Organizar e armazenar informações","Resfriar PC","Projetar imagens","Conectar caixas"],
+["Banco de Dados","SQL é usado principalmente para...","consultar e manipular bancos de dados","editar fotos","controlar mouse","montar computadores"],
+["Web","Qual linguagem estrutura uma página Web?","HTML","SQL","Python","C"],
+["Web","Qual tecnologia estiliza páginas Web?","CSS","HTML","SQL","PHP"],
+["Web","JavaScript é usado para...","adicionar comportamento e interatividade","substituir monitor","fabricar placas","aumentar RAM"],
+["Multimídia","Qual formato é comum em fotografias?","JPG/JPEG","TXT","EXE","CSV"],
+["Manutenção","Antes de abrir um computador, é importante...","desligar e desconectar a energia com segurança","molhar componentes","forçar cabos","ligar fontes"],
+["Manutenção","Boa ventilação ajuda a reduzir...","superaquecimento","capacidade do HD","tamanho da tela","velocidade do teclado"],
+["Ética e Tecnologia","Ao usar imagem da Internet, é importante verificar...","autoria, licença e condições de uso","se tudo é livre","se pode retirar o autor","se pode vender"],
+["Integração Técnica","Qual conjunto reúne áreas comuns da formação técnica em informática?","Programação, redes, sistemas e informática","Somente desenho","Somente literatura","Somente educação física"],
+["Integração Técnica","Desenvolver uma solução envolve...","problema, requisitos, lógica, implementação e testes","apenas código","apenas hardware","apenas apresentação"],["Office e Produtividade","Qual programa é normalmente usado para criar apresentações de slides?","PowerPoint","Excel","Paint","Bloco de Notas"],
+["Office e Produtividade","Em uma planilha, uma célula é identificada principalmente por...","coluna e linha","somente uma cor","nome do arquivo","tipo de impressora"],
+["Office e Produtividade","Qual recurso do editor de texto permite corrigir palavras digitadas incorretamente?","Verificação ortográfica","Firewall","Roteador","Gerenciador de tarefas"],
+["Internet","Qual serviço é usado para localizar informações na Web?","Mecanismo de busca","Placa-mãe","Memória RAM","Fonte"],
+["Internet","O que é um endereço URL?","Endereço de um recurso na Internet","Tipo de processador","Memória do computador","Formato de áudio"],
+["Internet","Qual destes é um serviço de armazenamento em nuvem?","Google Drive","Teclado","HDMI","BIOS"],
+["Redes","O que identifica um dispositivo em uma rede IP?","Endereço IP","Número da tecla","Nome do monitor","Tipo de mouse"],
+["Redes","Qual meio pode transmitir dados em uma rede cabeada?","Cabo de rede Ethernet","Cabo de energia comum","Cabo de áudio","Cabo de impressora paralelo"],
+["Programação","Qual operador lógico representa normalmente a ideia de E?","AND","OR","NOT","PRINT"],
+["Programação","Qual operador lógico representa normalmente a ideia de OU?","OR","AND","NOT","INPUT"],
+["Programação","Qual é a finalidade de uma entrada de dados?","Receber informações para o processamento","Desligar o computador","Formatar o monitor","Apagar o programa"],
+["Algoritmos","Em um fluxograma, o losango normalmente representa...","uma decisão","início ou fim","um documento","um banco de dados"],
+["Algoritmos","Em um fluxograma, o retângulo normalmente representa...","um processo","uma decisão","uma conexão Wi-Fi","uma imagem"],
+["Banco de Dados","Em um banco de dados, uma chave primária serve para...","identificar de forma única um registro","aumentar a velocidade da Internet","criar imagens","ligar o servidor"],
+["Desenvolvimento Web","Qual tag HTML é usada para criar um link?","<a>","<img>","<table>","<br>"],
+["Desenvolvimento Web","Qual tag HTML é usada para inserir uma imagem?","<img>","<p>","<h1>","<form>"],
+
+["Integração Técnica","Testar um sistema ajuda a...","encontrar erros e verificar requisitos","eliminar usuários","substituir planejamento","evitar documentação"]
+];
+let teams=[],i=0,timer=null,left=30,limit=30,locked=false,turn=0;
+
+function names(){
+ let n=+document.getElementById('n').value,box=document.getElementById('names');box.innerHTML='';
+ for(let j=0;j<n;j++){
+   let d=document.createElement('div');d.className='card';
+   let defaults=['1º Ano A','1º Ano B','2º Ano','3º Ano','1º Info A','1º Info B','2º Info','3º Info'];
+   d.innerHTML='<h3>🏫 Turma '+(j+1)+'</h3><input id="t'+j+'" value="'+(defaults[j]||'Turma '+(j+1))+'">';
+   box.appendChild(d)
+ }
+}
+document.getElementById('n').onchange=names;names();
+
+function show(id){
+ document.querySelectorAll('.screen').forEach(x=>x.classList.remove('active'));
+ document.getElementById(id).classList.add('active');
+ document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.s===id));
+ if(id==='placar')board();
+ if(id==='resultado')podium();
+}
+
+document.querySelectorAll('.nav button').forEach(b=>b.onclick=()=>show(b.dataset.s));
+
+function start(){
+ clearInterval(timer);
+ teams=[];
+ let n=+document.getElementById('n').value;
+ limit=+document.getElementById('limit').value;
+ for(let j=0;j<n;j++){
+   teams.push({name:document.getElementById('t'+j).value.trim()||'Turma '+(j+1),score:0});
+ }
+ i=0;turn=0;render();show('arena');
+}
+
+function render(){
+ clearInterval(timer);
+ left=limit;locked=false;
+ let x=qs[i%qs.length],team=teams[turn%teams.length];
+ document.getElementById('area').textContent=x[0].toUpperCase();
+ document.getElementById('num').textContent='Pergunta '+(i+1)+' de '+qs.length;
+ document.getElementById('q').textContent=x[1];
+ document.getElementById('timer').textContent=left;
+ document.getElementById('timer').className='timer';
+ document.getElementById('status').textContent='Aguardando o professor iniciar';
+ document.getElementById('fb').innerHTML='';
+ document.getElementById('turnName').textContent='🏫 '+team.name;
+ document.getElementById('turnBox').className='turn current';
+ document.getElementById('startBtn').disabled=false;
+
+ let order='';
+ teams.forEach((t,j)=>{
+   order+='<div class="turn-item '+(j===turn%teams.length?'active':'')+'">'+
+          (j===turn%teams.length?'👉 ':'')+(j+1)+'. '+t.name+
+          (j===turn%teams.length?' — RESPONDE AGORA':'')+'</div>';
+ });
+ document.getElementById('turnOrder').innerHTML=order;
+
+ let a=[x[2],x[3],x[4],x[5]].sort(()=>Math.random()-.5),o=document.getElementById('opts');
+ o.innerHTML='';
+ a.forEach((v,k)=>{
+   let b=document.createElement('button');
+   b.textContent=String.fromCharCode(65+k)+') '+v;
+   b.onclick=()=>answer(v,x[2],b);
+   o.appendChild(b);
+ });
+}
+
+function startTimer(){
+ if(locked)return;
+ clearInterval(timer);
+ document.getElementById('status').textContent='⏱️ Tempo valendo para '+teams[turn%teams.length].name+'!';
+ document.getElementById('startBtn').disabled=true;
+ timer=setInterval(()=>{
+   left--;
+   document.getElementById('timer').textContent=left;
+   if(left<=10)document.getElementById('timer').className='timer warning';
+   if(left<=0){
+     clearInterval(timer);
+     locked=true;
+     document.getElementById('timer').className='timer zero';
+     document.getElementById('status').textContent='⏰ TEMPO ESGOTADO — resposta encerrada';
+     lock();
+     showCorrect();
+   }
+ },1000);
+}
+
+function stopTimer(){
+ if(locked)return;
+ clearInterval(timer);
+ locked=true;
+ lock();
+ document.getElementById('status').textContent='⏸️ Resposta encerrada pelo professor';
+ showCorrect();
+}
+
+function lock(){document.querySelectorAll('#opts button').forEach(b=>b.disabled=true)}
+
+function answer(a,r,b){
+ if(locked)return;
+ clearInterval(timer);
+ locked=true;
+ lock();
+ b.style.background=a===r?'#dcfce7':'#fee2e2';
+ b.style.borderColor=a===r?'#22c55e':'#ef4444';
+ const team=teams[turn%teams.length];
+
+ if(a===r){
+   team.score+=10;
+   b.innerHTML='✅ '+b.textContent;
+   feedback('🎉 '+team.name+' ACERTOU! +10 pontos automaticamente.<br><br>Resposta correta: <strong>'+r+'</strong>',true);
+ }else{
+   b.innerHTML='❌ '+b.textContent;
+   feedback('❌ '+team.name+' errou.<br><br>Resposta correta: <strong>'+r+'</strong>',false);
+ }
+ board();
+ document.getElementById('status').textContent='✅ Resposta registrada — '+team.name+' não pode mais responder esta questão';
+}
+
+function showCorrect(){
+ const x=qs[i%qs.length];
+ feedback('⏰ Tempo encerrado.<br><br>Resposta correta: <strong>'+x[2]+'</strong><br><br>Esta questão não recebe ponto porque não houve acerto dentro do tempo.',false);
+ document.getElementById('status').textContent='Resposta encerrada — professor pode liberar a próxima';
+ board();
+}
+
+function feedback(s,ok){
+ let e=document.getElementById('fb');
+ e.className='feedback '+(ok?'ok':'no');
+ e.innerHTML=s;
+}
+
+function next(){
+ if(!teams.length)return;
+ clearInterval(timer);
+ i++;
+ turn=(turn+1)%teams.length;
+ if(i>=qs.length){
+   podium();
+   show('resultado');
+   return;
+ }
+ render();
+ show('arena');
+}
+
+function board(){
+ let e=document.getElementById('board');e.innerHTML='';
+ teams.forEach((t,j)=>{
+   let d=document.createElement('div');d.className='team';
+   d.innerHTML='<h3>🏫 '+t.name+'</h3><div class="score">'+t.score+'</div><div class="small">pontos</div>';
+   e.appendChild(d);
+ });
+}
+
+function podium(){
+ let a=[...teams].sort((x,y)=>y.score-x.score),e=document.getElementById('podium');e.innerHTML='';
+ ['🥇','🥈','🥉'].forEach((m,j)=>{
+   if(!a[j])return;
+   let d=document.createElement('div');d.className='place p'+(j+1);
+   d.innerHTML='<div style="font-size:42px">'+m+'</div><h2>'+a[j].name+'</h2><div class="score">'+a[j].score+'</div><div>pontos</div>';
+   e.appendChild(d);
+ });
+}
+setInterval(()=>document.getElementById('clock').textContent=new Date().toLocaleTimeString('pt-BR'),1000);
+</script></body></html>
